@@ -157,6 +157,17 @@ The system incorporates several security best practices:
 - Advanced document management and organization features
 - Mobile-responsive design optimization
 
+## 👥 Authors
+
+This project was developed as a collaborative effort by a dedicated team of developers who contributed their expertise across different aspects of the system.
+
+Thanks to:
+- **Md. Muzammil** - for helping with the backend and AI/ML Integration
+- **S.B Sumaja and Md. Sofiya** - for the Frontend and UI Design
+- **G. Ujwal** - for Testing
+
+Each team member brought unique skills and perspectives to the project, contributing to both the technical implementation and the overall system architecture. The collaborative nature of this project demonstrates effective teamwork in a complex technical environment and showcases our ability to work together on enterprise-level software development.
+
 ## 📊 Performance Metrics
 
 - **Query Response Time:** < 2 seconds for typical document queries
