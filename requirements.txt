@@ -1,0 +1,15 @@
+Flask
+langchain
+langchain-community
+langchain-groq
+faiss-cpu
+werkzeug
+torch
+numpy
+python-dotenv
+requests
+nltk
+sentence-transformers
+scikit-learn
+language-tool-python
+PyPDF2

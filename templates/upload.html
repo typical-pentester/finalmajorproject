@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload PDF</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+:root {
+  --primary-color: #0066cc;
+  --primary-color-dark: #004a99;
+  --secondary-color: #f3f8fc; /* Light Grayish Blue */
+  --text-color: #2f2f2f; /* Very Dark Gray */
+  --white: #ffffff;
+  --max-width: 1200px;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --background-color: #f4f6f7;
+  --card-bg: #fff;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  color: var(--text-color);
+  background-color: var(--secondary-color);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  color: #fff;
+  box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.nav__logo {
+  margin-left: 30px;
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: var(--primary-color-dark);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.nav__links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-right: 30px;
+}
+
+.link a {
+  margin-top: 0;
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.link a:hover {
+  color: var(--primary-color);
+}
+
+h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 30px;
+  color: var(--primary-color-dark);
+}
+
+form {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background-color: var(--white);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+label {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color-dark);
+}
+
+input[type="text"],
+input[type="file"] {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 1rem;
+  font-size: 1rem;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: var(--primary-color-dark);
+}
+
+.loader {
+  display: none;
+  margin: auto;
+  text-align: center;
+}
+
+.loader:after {
+  content: "";
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 8px solid #fff;
+  border-top: 8px solid var(--primary-color);
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#successMessage {
+  display: none;
+  text-align: center;
+  font-size: 1rem;
+  color: green;
+  margin-top: 20px;
+}
+
+a {
+  display: block;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--primary-color);
+  margin-top: 20px;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--primary-color-dark);
+}
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav__logo"><b>AI- Based Learning Assistant</b></div>
+        <ul class="nav__links">
+          <li class="link"><a href="/dashboard">Home</a></li>
+          <li class="link"><a href="#">About Us</a></li>
+          <li class="link"><a href="#">Services</a></li>
+          <li class="link"><a href="#">Courses</a></li>
+          <li class="link"><a href="#">Blog</a></li>
+          <li class="link"><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+    
+    <h2>Upload PDF Documents</h2>
+    <form action="/upload" method="post" enctype="multipart/form-data" onsubmit="showLoader()">
+        <label for="vectorstore_name">Enter Vectorstore Name:</label><br/>
+        <input type="text" id="vectorstore_name" name="vectorstore_name" required>
+        <br/><br/>
+        <label for="pdf_file">Select PDF Files:</label><br/>
+        <input type="file" id="pdf_file" name="pdf_file" multiple accept=".pdf" required>
+        <br/><br/>
+        <button type="submit">Upload</button>
+    </form>
+
+    <div class="loader" id="loader"></div>
+    <div class="message" id="successMessage">Upload Successful!</div>
+
+    <br/><br/>
+
+    <script>
+        function showLoader() {
+            document.getElementById('loader').style.display = 'block';
+            document.getElementById('successMessage').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Questions</title>
+    <style>
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+:root {
+  --primary-color: #0066cc; /* Strong Blue */
+  --primary-color-dark: #004a99; /* Darker Blue */
+  --secondary-color: #f3f8fc; /* Light Grayish Blue */
+  --text-color: #2f2f2f; /* Very Dark Gray */
+  --white: #ffffff;
+  --max-width: 1200px;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --background-color: #f4f6f7;
+  --card-bg: #fff;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: var(--text-color);
+  background-color: var(--secondary-color);
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  color: #fff;
+  box-shadow: 0 4px 6px var(--shadow-color);
+}
+nav {
+  margin: auto;
+  padding: 1rem;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--secondary-color);
+}
+
+.nav__logo {
+  margin-left: 30px;
+
+    font-size: 2.3rem;
+  font-weight: 700;
+  color: var(--primary-color-dark);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.nav__links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-right: 30px;
+  margin-top: 15px;
+}
+
+.link a {
+
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.link a:hover {
+  color: var(--primary-color);
+}
+
+.link .nav__btn {
+  padding: 0.5rem 2rem;
+  color: var(--white) !important;
+  background-color: var(--primary-color);
+  border-radius: 5px;
+}
+
+.link .nav__btn:hover {
+  background-color: var(--primary-color-dark);
+}
+
+.app-container {
+  max-width: var(--max-width);
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--card-bg);
+  box-shadow: 0 4px 10px var(--shadow-color);
+  border-radius: 10px;
+}
+
+.app-container h2 {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+}
+
+.generate-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.generate-form label {
+  font-size: 1.1rem;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.generate-form input {
+  padding: 0.8rem 1rem;
+  width: 300px;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  font-size: 1rem;
+  color: var(--text-color);
+  transition: border-color 0.3s;
+}
+
+.generate-form input:focus {
+  border-color: var(--primary-color-dark);
+  outline: none;
+}
+
+.generate-form button {
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.generate-form button:hover {
+  background-color: var(--primary-color-dark);
+}
+
+/* Display questions */
+h1 {
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.answer {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: var(--secondary-color);
+  box-shadow: 0 2px 6px var(--shadow-color);
+  text-align: left;
+  display: none;
+}
+
+.answer p {
+  font-size: 1.1rem;
+  color: var(--text-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .generate-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .generate-form input {
+    width: 100%;
+  }
+
+  .generate-form button {
+    width: 100%;
+    margin-top: 1rem;
+  }
+}
+
+button:focus,
+input:focus {
+  outline: none;
+  box-shadow: 0 0 5px var(--primary-color);
+}
+
+* {
+  transition: all 0.3s ease;
+}
+.app-container {
+  max-width: var(--max-width);
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--card-bg);
+  box-shadow: 0 4px 10px var(--shadow-color);
+  border-radius: 10px;
+}
+
+.app-container h2 {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+}
+
+.generate-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.generate-form label {
+  font-size: 1.1rem;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.generate-form input {
+  padding: 0.8rem 1rem;
+  width: 300px;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  font-size: 1rem;
+  color: var(--text-color);
+  transition: border-color 0.3s;
+}
+
+.generate-form input:focus {
+  border-color: var(--primary-color-dark);
+  outline: none;
+}
+
+.generate-form button {
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.generate-form button:hover {
+  background-color: var(--primary-color-dark);
+}
+
+.container {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px var(--shadow-color);
+}
+
+.question {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: var(--secondary-color);
+  box-shadow: 0 2px 6px var(--shadow-color);
+}
+
+.question-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-color-dark);
+  cursor: pointer;
+}
+
+.answer-field {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.submit-btn {
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: block;
+  margin: 1.5rem auto 0;
+}
+
+.submit-btn:hover {
+  background-color: var(--primary-color-dark);
+}
+
+.result-card {
+  border: 1px solid var(--primary-color);
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  background-color: var(--secondary-color);
+  box-shadow: 0 2px 6px var(--shadow-color);
+}
+
+.result-card p {
+  font-size: 1rem;
+  color: var(--text-color);
+  margin: 0.5rem 0;
+}
+
+@media (max-width: 768px) {
+  .generate-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .generate-form input,
+  .generate-form button {
+    width: 100%;
+  }
+}
+.question-toggle {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: left;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.question-toggle:hover {
+  background-color: var(--primary-color-dark);
+}
+
+.question-toggle:active {
+  transform: scale(0.98);
+}
+
+.question-toggle::after {
+  content: " ▼"; /* Adds a dropdown arrow */
+  float: right;
+  font-size: 1.2rem;
+}
+
+.question-toggle.open::after {
+  content: " ▲"; /* Changes to an upward arrow when expanded */
+}
+
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav__logo"><b>AI- Based Learning Assistant</b></div>
+        <ul class="nav__links">
+          <li class="link"><a href="/dashboard">Home</a></li>
+          <li class="link"><a href="#">About Us</a></li>
+          <li class="link"><a href="/dashboard001">Services</a></li>
+          <li class="link"><a href="#">Courses</a></li>
+          <li class="link"><a href="/select_vectorstore">Change Book</a></li>
+          <li class="link"><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="app-container">
+        <h2>Generate Questions and Answers</h2>
+        <form method="post" action="/generate_questions" class="generate-form">
+            <label for="topic">Enter Topic:</label>
+            <input type="text" id="topic" name="topic" required placeholder="Enter the topic here">
+            <button type="submit">Generate Questions</button>
+        </form>
+
+        <!-- Display Generated Questions -->
+        <!-- {% if qa_pairs %}
+        <div class="generated-questions">
+            <h1>Generated Questions for Topic: {{ topic }}</h1>
+            <ul>
+                {% for qa in qa_pairs %}
+                    <li>
+                        <strong>Q:</strong> {{ qa.question }}<br>
+                        <strong>A:</strong> {{ qa.answer }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% else %}
+            <p>No questions generated yet.</p>
+        {% endif %}
+    </div> -->
+    <!-- Display Generated Questions -->
+{% if qa_pairs %}
+<div class="generated-questions">
+    <h1>Generated Questions for Topic: {{ topic }}</h1>
+    <ul>
+        {% for qa in qa_pairs %}
+            <li class="question-item">
+              
+                <button class="question-toggle">{{ qa.question }}</button>
+                <div class="answer">
+                    <strong>A:</strong> {{ qa.answer }}
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% else %}
+<p>No questions generated yet.</p>
+{% endif %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const questions = document.querySelectorAll(".question-toggle");
+
+    questions.forEach(question => {
+        question.addEventListener("click", function () {
+            const answer = this.nextElementSibling;
+            answer.style.display = (answer.style.display === "block") ? "none" : "block";
+        });
+    });
+});
+
+</script>
+</body>
+</html>

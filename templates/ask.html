@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Q&A App</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+    <style>
+        /* Student Q&A App - CSS Styling */
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+:root {
+  --primary-color: #0066cc; /* Strong Blue */
+  --primary-color-dark: #004a99; /* Darker Blue */
+  --secondary-color: #f3f8fc; /* Light Grayish Blue */
+  --text-color: #2f2f2f; /* Very Dark Gray */
+  --white: #ffffff;
+  --max-width: 1200px;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --background-color: #f4f6f7;
+  --card-bg: #fff;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  
+  box-sizing: border-box;
+}
+
+body {
+  /* font-family: "Poppins", sans-serif; */
+  font-family: "Poppins","Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  color: var(--text-color);
+  background-color: var(--secondary-color);
+  /* background-image: url('/static/assets/back1.jpg'); Add your image URL */
+  /* background-size:contain;
+  background-position: center 10%; */ 
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  color: #fff;
+  box-shadow: 0 4px 6px var(--shadow-color);
+}
+nav {
+  margin: auto;
+  padding: 1rem;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--secondary-color);
+}
+
+.nav__logo {
+  margin-left: 30px;
+
+    font-size: 2.3rem;
+  font-weight: 700;
+  color: var(--primary-color-dark);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.nav__links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-right: 30px;
+
+}
+
+.link a {
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.link a:hover {
+  color: var(--primary-color);
+}
+
+.link .nav__btn {
+  padding: 0.5rem 2rem;
+  color: var(--white) !important;
+  background-color: var(--primary-color);
+  border-radius: 5px;
+}
+
+.link .nav__btn:hover {
+  background-color: var(--primary-color-dark);
+}
+.app-container {
+  max-width: var(--max-width);
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--card-bg);
+  box-shadow: 0 4px 10px var(--shadow-color);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.app-container h1 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 2rem;
+}
+
+.app-container form {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.app-container input {
+  padding: 1rem;
+  width: 60%;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.app-container button {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.app-container button:hover {
+  background-color: var(--primary-color-dark);
+}
+
+.answer {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: var(--secondary-color);
+  box-shadow: 0 2px 6px var(--shadow-color);
+  text-align: left;
+}
+
+.answer p {
+  font-size: 1.1rem;
+  color: var(--text-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app-container form {
+    flex-direction: column;
+  }
+
+  .app-container input {
+    width: 100%;
+  }
+
+  .app-container button {
+    width: 100%;
+  }
+}
+
+/* Improved Button Interaction */
+button:focus,
+input:focus {
+  outline: none;
+  box-shadow: 0 0 5px var(--primary-color);
+}
+
+/* Smooth transitions */
+* {
+  transition: all 0.3s ease;
+}
+    </style>
+</head>
+<body>
+   
+        <nav class="navbar">
+            <div class="nav__logo"><b>AI- Based Learning Assistant</b></div>
+            <ul class="nav__links">
+              <li class="link"><a href="/dashboard">Home</a></li>
+              <li class="link"><a href="#">About Us</a></li>
+              <li class="link"><a href="/dashboard001">Services</a></li>
+              <li class="link"><a href="#">Courses</a></li>
+              <li class="link"><a href="/select_vectorstore">Change Book</a></li>
+              <li class="link"><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+        
+        <div class="app-container">
+        <h1>Student Q&A Portal</h1>
+        <form action="/ask" method="POST">
+            <input type="text" name="question" placeholder="Ask your question here..." required>
+            <button type="submit">Ask Question</button>
+        </form>
+        
+        {% if answer %}
+        <div class="answer">
+            <p><strong>Question:</strong> {{ question }}</p>
+            <p><strong>Answer:</strong> {{ answer }}</p>
+        </div>
+        {% endif %}
+    </div>
+    
+</body>
+</html>

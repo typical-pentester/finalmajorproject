@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Vectorstore</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+:root {
+  --primary-color: #0066cc; /* Strong Blue */
+  --primary-color-dark: #004a99; /* Darker Blue */
+  --secondary-color: #f3f8fc; /* Light Grayish Blue */
+  --text-color: #2f2f2f; /* Very Dark Gray */
+  --white: #ffffff;
+  --max-width: 1200px;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --background-color: #f4f6f7;
+  --card-bg: #fff;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  color: var(--text-color);
+  background-color: var(--secondary-color);
+  
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  color: #fff;
+  box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.nav__logo {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: var(--primary-color-dark);
+  transition: 0.3s;
+}
+
+.nav__links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.link a {
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.link a:hover {
+  color: var(--primary-color);
+}
+
+h2 {
+  font-size: 2rem;
+  color: var(--primary-color-dark);
+  text-align: center;
+  margin-top: 30px;
+}
+
+form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+form label {
+  font-size: 1.1rem;
+  color: var(--primary-color-dark);
+  margin-bottom: 10px;
+}
+
+select {
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid var(--primary-color-dark);
+  border-radius: 5px;
+  outline: none;
+  margin-bottom: 20px;
+  width: 250px;
+}
+
+select:focus {
+  border-color: var(--primary-color);
+}
+
+button {
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: var(--primary-color-dark);
+}
+
+/* Add responsiveness for smaller screens */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav__logo {
+    margin-bottom: 10px;
+  }
+
+  .nav__links {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  form {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav__logo"><b>AI- Based Learning Assistant</b></div>
+        <ul class="nav__links">
+          <li class="link"><a href="/dashboard">Home</a></li>
+          <li class="link"><a href="#">About Us</a></li>
+          <li class="link"><a href="/dashboard001">Services</a></li>
+          <li class="link"><a href="#">Courses</a></li>
+          <li class="link"><a href="/select_vectorstore">Change Book</a></li>
+          <li class="link"><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+    <br><br><br>
+    <h2>Select a Document</h2>
+    <form action="/select_vectorstore" method="post">
+        <label for="selected_store">Choose a Document:</label>
+        <select name="selected_store" id="selected_store" required>
+            {% for store in vectorstores %}
+                <option value="{{ store }}">{{ store }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Use Selected Document</button>
+    </form>
+</body>
+</html>
